@@ -331,8 +331,8 @@ class PostPage extends StatelessWidget {
               decoration: const BoxDecoration(
                   color: Color.fromARGB(254, 254, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular((20)))),
-              child: const Column(children: [
-                Padding(
+              child: Column(children: [
+                const Padding(
                     padding: EdgeInsets.only(bottom: 20),
                     child: Row(children: [
                       Text(
@@ -341,7 +341,7 @@ class PostPage extends StatelessWidget {
                         'Best Comments',
                       ),
                       Icon(
-                        Icons.move_down,
+                        Icons.expand_more,
                       )
                     ])),
                 Row(
@@ -349,7 +349,7 @@ class PostPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(right: 10),
                             child: CircleAvatar(
                               foregroundImage: NetworkImage(
@@ -369,11 +369,15 @@ class PostPage extends StatelessWidget {
                               ),
                               Align(
                                 alignment: Alignment.bottomLeft,
-                                child: Text(
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w500),
-                                    "What is new normal? it's absolutelyy abnormal!"),
-                              ),
+                                child: SizedBox(
+                                  width: 300,
+                                  child: Container(
+                                      child: Text(
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500),
+                                          "What is new normal? it's absolutelyy abnormal!")),
+                                ),
+                              )
                             ],
                           ),
                           Icon(Icons.more_vert),
@@ -432,69 +436,65 @@ class PostPage extends StatelessWidget {
         ],
       ),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(75),
-        child: Container(
-          color: Colors.white,
-          padding:
-              const EdgeInsets.only(top: 50, right: 10, left: 10, bottom: 20),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            const Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(right: 10),
-                  child: CircleAvatar(
-                    foregroundImage: NetworkImage(
-                        "https://static9.depositphotos.com/1550494/1195/i/450/depositphotos_11950254-Urban-asian-man-with-red-sunglasses-and-skateboard-sitting-on-stairs.-Good-looking.-Cool-guy.-Wearing-grey-shirt-and-jeans.-Old-neglected-building-in-the-background..jpg"),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        preferredSize: const Size.fromHeight(90),
+        child: Align(
+            alignment: Alignment.center,
+            child: Container(
+              color: Colors.white,
+              padding: const EdgeInsets.only(right: 10, left: 10),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                          style: TextStyle(fontWeight: FontWeight.w500),
-                          "r/subreddit"),
+                    const Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: CircleAvatar(
+                            foregroundImage: NetworkImage(
+                                "https://static9.depositphotos.com/1550494/1195/i/450/depositphotos_11950254-Urban-asian-man-with-red-sunglasses-and-skateboard-sitting-on-stairs.-Good-looking.-Cool-guy.-Wearing-grey-shirt-and-jeans.-Old-neglected-building-in-the-background..jpg"),
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.only(top: 40),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                      "r/subreddit"),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                      style: TextStyle(color: lightGreyColor),
+                                      "by u/internetPositif * 16h * i.redd.it"),
+                                ),
+                              ],
+                            )),
+                      ],
                     ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                          style: TextStyle(color: lightGreyColor),
-                          "by u/internetPositif * 16h * i.redd.it"),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            OutlinedButton(
-                // style: ButtonStyle(
-                //     iconColor: orangeColor
-                // ),
-                onPressed: () {},
-                child: const Text("JOIN"))
-          ]),
-        ),
+                    OutlinedButton(onPressed: () {}, child: const Text("JOIN"))
+                  ]),
+            )),
       ),
       bottomNavigationBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
         child: Container(
           color: Colors.white,
           padding: const EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Flex(
+          direction: Axis.horizontal,
             children: [
-              Container(
-                  margin: const EdgeInsets.only(right: 20),
-                  child: const SizedBox(
-                    width: 355,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Add a comment...',
-                      ),
-                    ),
-                  )),
+              const Expanded(
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Add a comment...',
+                ),
+              )),
               Container(
                 width: 65,
                 height: 65,
@@ -764,8 +764,8 @@ class ProfilePage extends StatelessWidget {
                             style: TextStyle(color: Colors.white), "Settings")),
                     Padding(
                         padding: EdgeInsets.only(right: 40),
-                        child: Text(
-                            style: TextStyle(color: lightGreyColor), "|")),
+                        child:
+                            Text(style: TextStyle(color: lightGreyColor), "|")),
                     Padding(
                         padding: EdgeInsets.only(right: 10),
                         child: Text(
