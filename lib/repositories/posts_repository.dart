@@ -14,9 +14,13 @@ class PostsRepositor extends ChangeNotifier {
       List<PostModel> posts = querySnapshot.docs.map((doc) {
         return PostModel(
           id: doc.id,
-          title: doc['name'],
-          description: doc['email'],
-          imageUrl: doc['age'],
+          title: doc['title'],
+          description: doc['description'],
+          imageUrl: doc['imageUrl'],
+          timeAgo: doc['timeAgo'],
+          comments: doc['comments'],
+          upVotes: doc['upVotes'],
+          subreddit: doc['subreddit'],
         );
       }).toList();
       return posts;
@@ -35,6 +39,10 @@ class PostsRepositor extends ChangeNotifier {
             title: doc['title'],
             description: doc['description'],
             imageUrl: doc['imageUrl'],
+            timeAgo: doc['timeAgo'],
+            comments: doc['comments'],
+            upVotes: doc['upVotes'],
+            subreddit: doc['subreddit'],
           );
         }).toList();
       });

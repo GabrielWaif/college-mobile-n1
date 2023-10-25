@@ -15,12 +15,8 @@ class PostPage extends StatelessWidget {
       body: ListView(
         children: [
           Post(
-            timeAgo: "16h",
-            comments: "2,4",
-            upVotes: "1,2",
             iconURL:
-                "https://static9.depositphotos.com/1550494/1195/i/450/depositphotos_11950254-Urban-asian-man-with-red-sunglasses-and-skateboard-sitting-on-stairs.-Good-looking.-Cool-guy.-Wearing-grey-shirt-and-jeans.-Old-neglected-building-in-the-background..jpg",
-            subreddit: "Coronavirus",
+                "https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png",
             username: "internetPositif",
             isFirst: false,
             isLiked: true,
@@ -72,13 +68,11 @@ class PostPage extends StatelessWidget {
                               Align(
                                 alignment: Alignment.bottomLeft,
                                 child: SizedBox(
-                                  width: 300,
-                                  child: Container(
-                                      child: Text(
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500),
-                                          "What is new normal? it's absolutelyy abnormal!")),
-                                ),
+                                    width: 150,
+                                    child: Text(
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500),
+                                        "What is new normal")),
                               )
                             ],
                           ),
@@ -120,7 +114,7 @@ class PostPage extends StatelessWidget {
                                 child: Text(
                                     style:
                                         TextStyle(fontWeight: FontWeight.w500),
-                                    "Why do I get a feeling the \"New Normal\"."),
+                                    "Why do I get a feeling."),
                               ),
                             ],
                           ),

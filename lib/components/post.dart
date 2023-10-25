@@ -1,30 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:reddit_clone/lib/colors.dart';
 import 'package:reddit_clone/models/post.dart';
+import 'package:reddit_clone/pages/HomePage.dart';
 import 'package:reddit_clone/pages/PostPage.dart';
+import 'package:reddit_clone/repositories/posts_repository.dart';
 
 class Post extends StatelessWidget {
   final PostModel post;
 
-  const Post({
-    super.key,
-    required this.username,
-    required this.subreddit,
-    required this.iconURL,
-    required this.upVotes,
-    required this.comments,
-    required this.timeAgo,
-    this.isLiked = false,
-    this.isFirst = false,
-    required this.post
-  });
+  const Post(
+      {super.key,
+      required this.username,
+      required this.iconURL,
+      this.isLiked = false,
+      this.isFirst = false,
+      required this.post});
 
   final String username;
-  final String subreddit;
   final String iconURL;
-  final String timeAgo;
-  final String upVotes;
-  final String comments;
   final bool isLiked;
   final bool isFirst;
 
@@ -32,6 +26,8 @@ class Post extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
+        Provider.of<PostsRepositor>(context, listen: false).delete(post.id);
+
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => PostPage(post: post)));
         },
@@ -86,10 +82,16 @@ class Post extends StatelessWidget {
                           Text(
                               style:
                                   const TextStyle(fontWeight: FontWeight.w500),
-                              "r/$subreddit")
+                              "r/${post.subreddit}")
                         ],
                       ),
-                      const Icon(Icons.more_vert),
+                      InkWell(
+                      onTap: () async {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+                      },
+                      child: const Icon(
+                      Icons.delete)),
                     ],
                   ),
                   Align(
@@ -99,13 +101,12 @@ class Post extends StatelessWidget {
                               fontSize: 20, fontWeight: FontWeight.w500),
                           post.title)),
                   () {
-                    if (post.imageUrl != "") {
+                    if (post.imageUrl != null) {
                       return Padding(
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                         child: Align(
                           alignment: Alignment.center,
                           child: ClipRect(
-                              // borderRadius: BorderRadius.circular(8.0),
                               child: Image.network(post.imageUrl ?? "")),
                         ),
                       );
@@ -122,7 +123,7 @@ class Post extends StatelessWidget {
                             child: Text(
                               style: const TextStyle(
                                   color: lightGreyColor, fontSize: 15),
-                              "by r/$username * $timeAgo",
+                              "by r/$username * ${post.timeAgo.toDate().toString()}",
                             ),
                           ));
                     }
@@ -137,7 +138,7 @@ class Post extends StatelessWidget {
                               child: Icon(
                                   color: isLiked ? orangeColor : greyColor,
                                   Icons.arrow_upward)),
-                          Text("$upVotes K",
+                          Text("${post.upVotes} K",
                               style: TextStyle(
                                   color: isLiked ? orangeColor : greyColor,
                                   fontSize: 15)),
@@ -153,7 +154,7 @@ class Post extends StatelessWidget {
                           Text(
                               style: const TextStyle(
                                   color: greyColor, fontSize: 15),
-                              "$comments K"),
+                              "${post.comments} K"),
                         ],
                       ),
                       const Row(

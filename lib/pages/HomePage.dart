@@ -5,6 +5,7 @@ import 'package:reddit_clone/components/post.dart';
 import 'package:reddit_clone/lib/colors.dart';
 import 'package:reddit_clone/models/post.dart';
 import 'package:reddit_clone/pages/ProfilePage.dart';
+import 'package:reddit_clone/pages/RegisterPage.dart';
 import 'package:reddit_clone/repositories/posts_repository.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -17,14 +18,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    Future createPost() async {
-      final post = PostModel(
-          title: "new title",
-          description: "new description",
-          imageUrl: "com.br");
-
-      Provider.of<PostsRepositor>(context, listen: false).createPost(post);
-    }
 
     @override
     void initState() {
@@ -52,12 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemCount: posts?.length,
                 itemBuilder: (context, index) {
                   return Post(
-                    timeAgo: "7h",
-                    comments: "3,0",
-                    upVotes: "28,2",
                     iconURL:
                         "https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png",
-                    subreddit: "AskReddit",
                     username: "coachieforbreakfast",
                     isFirst: true,
                     post: posts![index],
@@ -70,7 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(20),
         child: InkWell(
           onTap: () async {
-            await createPost();
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => NewPostPage()));
           },
           child: Container(
             width: 56,
