@@ -7,9 +7,14 @@ import 'package:reddit_clone/models/post.dart';
 import 'package:reddit_clone/pages/ProfilePage.dart';
 import 'package:reddit_clone/repositories/posts_repository.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Future createPost() async {
@@ -21,48 +26,47 @@ class MyHomePage extends StatelessWidget {
       Provider.of<PostsRepositor>(context, listen: false).createPost(post);
     }
 
+    @override
+    void initState() {
+      super.initState();
+      Provider.of<PostsRepositor>(context, listen: false).getAll();
+    }
+
+    var postsRepository = Provider.of<PostsRepositor>(context);
+
     return Scaffold(
-      body: ListView(
-        children: const [
-          Post(
-            timeAgo: "7h",
-            comments: "3,0",
-            upVotes: "28,2",
-            text:
-                "What's something you've gotten away with as a kid because \"they're young and don't know what they're doing!\" when really you knew exactly what you were going?",
-            iconURL:
-                "https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png",
-            subreddit: "AskReddit",
-            username: "coachieforbreakfast",
-            isFirst: true,
-          ),
-          Post(
-            timeAgo: "16h",
-            comments: "2,4",
-            upVotes: "1,2",
-            text: "Navigation the New Normal.",
-            iconURL:
-                "https://static9.depositphotos.com/1550494/1195/i/450/depositphotos_11950254-Urban-asian-man-with-red-sunglasses-and-skateboard-sitting-on-stairs.-Good-looking.-Cool-guy.-Wearing-grey-shirt-and-jeans.-Old-neglected-building-in-the-background..jpg",
-            imageURL:
-                "https://images.indianexpress.com/2021/07/Opinion-3-8.jpg?w=640",
-            subreddit: "Coronavirus",
-            username: "internetPositif",
-            isFirst: false,
-            isLiked: true,
-          ),
-          Post(
-            timeAgo: "1h",
-            comments: "2,0",
-            upVotes: "1,0",
-            text: "Author plans to write another 12 books.",
-            iconURL:
-                "https://s26162.pcdn.co/wp-content/uploads/2022/05/Books.jpeg",
-            subreddit: "books",
-            username: "bookReader",
-            isFirst: false,
-          ),
-        ],
-      ),
+      body: StreamBuilder<List<PostModel>>(
+          stream: postsRepository.getStream(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text("Erro: ${snapshot.error}"),
+              );
+            } else {
+              List<PostModel>? posts = snapshot.data;
+              return ListView.builder(
+                itemCount: posts?.length,
+                itemBuilder: (context, index) {
+                  return Post(
+                    timeAgo: "7h",
+                    comments: "3,0",
+                    upVotes: "28,2",
+                    text: posts![index].description,
+                    iconURL:
+                        "https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png",
+                    subreddit: "AskReddit",
+                    username: "coachieforbreakfast",
+                    isFirst: true,
+                    imageURL: posts[index].imageUrl,
+                  );
+                },
+              );
+            }
+          }),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(20),
         child: InkWell(

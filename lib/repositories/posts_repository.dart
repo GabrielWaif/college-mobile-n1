@@ -26,6 +26,24 @@ class PostsRepositor extends ChangeNotifier {
     }
   }
 
+  Stream<List<PostModel>> getStream() {
+    try {
+      return _postsCollection.snapshots().map((snapshot) {
+        return snapshot.docs.map((doc) {
+          return PostModel(
+            id: doc.id,
+            title: doc['title'],
+            description: doc['description'],
+            imageUrl: doc['imageUrl'],
+          );
+        }).toList();
+      });
+    } catch (e) {
+      print("Erro ao obter posts: $e");
+      return Stream.value([]);
+    }
+  }
+
   Future createPost(PostModel post) async {
     final docUser = _postsCollection.doc();
     post.id = docUser.id;

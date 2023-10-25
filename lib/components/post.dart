@@ -21,7 +21,7 @@ class Post extends StatelessWidget {
   final String subreddit;
   final String iconURL;
   final String text;
-  final String imageURL;
+  final String? imageURL;
   final String timeAgo;
   final String upVotes;
   final String comments;
@@ -106,7 +106,7 @@ class Post extends StatelessWidget {
                           alignment: Alignment.center,
                           child: ClipRect(
                               // borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(imageURL)),
+                              child: Image.network(imageURL ?? "")),
                         ),
                       );
                     } else {
