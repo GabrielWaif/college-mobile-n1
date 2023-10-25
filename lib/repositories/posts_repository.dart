@@ -59,6 +59,13 @@ class PostsRepositor extends ChangeNotifier {
     await docUser.set(json);
   }
 
+  Future updatePost(String postId, PostModel post) async {
+    final docUser = _postsCollection.doc(postId);
+    post.id = docUser.id;
+    final json = post.toJson();
+    await docUser.set(json);
+  }
+
   Future<void> delete(String postId) async {
     try {
       await _postsCollection.doc(postId).delete();

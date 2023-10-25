@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reddit_clone/lib/colors.dart';
 import 'package:reddit_clone/models/post.dart';
+import 'package:reddit_clone/pages/EditPage.dart';
 import 'package:reddit_clone/pages/HomePage.dart';
 import 'package:reddit_clone/pages/PostPage.dart';
 import 'package:reddit_clone/repositories/posts_repository.dart';
@@ -26,8 +27,6 @@ class Post extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-        Provider.of<PostsRepositor>(context, listen: false).delete(post.id);
-
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => PostPage(post: post)));
         },
@@ -86,12 +85,25 @@ class Post extends StatelessWidget {
                         ],
                       ),
                       InkWell(
-                      onTap: () async {
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => const MyHomePage()));
-                      },
-                      child: const Icon(
-                      Icons.delete)),
+                          onTap: () async {
+                            Provider.of<PostsRepositor>(context, listen: false)
+                                .delete(post.id);
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MyHomePage()));
+                          },
+                          child: const Icon(Icons.delete)),
+                      InkWell(
+                          onTap: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        EditPostPage(post: post)));
+                          },
+                          child: const Icon(Icons.edit)),
                     ],
                   ),
                   Align(
@@ -100,20 +112,22 @@ class Post extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w500),
                           post.title)),
-                  () {
-                    if (post.imageUrl != null) {
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: ClipRect(
-                              child: Image.network(post.imageUrl ?? "")),
-                        ),
-                      );
-                    } else {
-                      return const Row();
-                    }
-                  }(),
+                  // () {
+                  //   print("AQUII");
+                  //   print(post.imageUrl);
+                  //   if (post.imageUrl != null) {
+                  //     return Padding(
+                  //       padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  //       child: Align(
+                  //         alignment: Alignment.center,
+                  //         child: ClipRect(
+                  //             child: Image.network(post.imageUrl ?? "")),
+                  //       ),
+                  //     );
+                  //   } else {
+                  //     return const Row();
+                  //   }
+                  // }(),
                   () {
                     if (true) {
                       return Padding(
