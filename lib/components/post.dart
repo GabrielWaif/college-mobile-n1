@@ -112,22 +112,20 @@ class Post extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w500),
                           post.title)),
-                  // () {
-                  //   print("AQUII");
-                  //   print(post.imageUrl);
-                  //   if (post.imageUrl != null) {
-                  //     return Padding(
-                  //       padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  //       child: Align(
-                  //         alignment: Alignment.center,
-                  //         child: ClipRect(
-                  //             child: Image.network(post.imageUrl ?? "")),
-                  //       ),
-                  //     );
-                  //   } else {
-                  //     return const Row();
-                  //   }
-                  // }(),
+                  () {
+                    if (post.imageUrl != null) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 10, bottom: 10),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: ClipRect(
+                              child: Image.network(post.imageUrl ?? "")),
+                        ),
+                      );
+                    } else {
+                      return const Row();
+                    }
+                  }(),
                   () {
                     if (true) {
                       return Padding(

@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconURL:
                         "https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png",
                     username: "coachieforbreakfast",
-                    isFirst: true,
+                    isFirst: index == 0,
                     post: posts![index],
                   );
                 },

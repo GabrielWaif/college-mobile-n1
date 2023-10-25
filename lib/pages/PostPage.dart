@@ -17,7 +17,7 @@ class PostPage extends StatelessWidget {
           Post(
             iconURL:
                 "https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png",
-            username: "internetPositif",
+            username: "coachieforbreakfast",
             isFirst: false,
             isLiked: true,
             post: post,
@@ -29,8 +29,8 @@ class PostPage extends StatelessWidget {
               decoration: const BoxDecoration(
                   color: Color.fromARGB(254, 254, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular((20)))),
-              child: Column(children: [
-                const Padding(
+              child: const Column(children: [
+                Padding(
                     padding: EdgeInsets.only(bottom: 20),
                     child: Row(children: [
                       Text(
@@ -47,7 +47,7 @@ class PostPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(right: 10),
                             child: CircleAvatar(
                               foregroundImage: NetworkImage(
@@ -141,32 +141,32 @@ class PostPage extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Row(
+                    Row(
                       children: [
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(right: 10),
                           child: CircleAvatar(
                             foregroundImage: NetworkImage(
-                                "https://static9.depositphotos.com/1550494/1195/i/450/depositphotos_11950254-Urban-asian-man-with-red-sunglasses-and-skateboard-sitting-on-stairs.-Good-looking.-Cool-guy.-Wearing-grey-shirt-and-jeans.-Old-neglected-building-in-the-background..jpg"),
+                                "https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png"),
                           ),
                         ),
                         Padding(
-                            padding: EdgeInsets.only(top: 40),
+                            padding: const EdgeInsets.only(top: 40),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.w500),
-                                      "r/subreddit"),
+                                      "r/${post.subreddit}"),
                                 ),
-                                Align(
+                                const Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                       style: TextStyle(color: lightGreyColor),
-                                      "by u/internetPositif * 16h * i.redd.it"),
+                                      "by u/coachieforbreakfast * i.redd.it"),
                                 ),
                               ],
                             )),

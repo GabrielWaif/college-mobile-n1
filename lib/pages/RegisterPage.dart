@@ -44,7 +44,7 @@ class _NewPostPageState extends State<NewPostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Post'),
+        title: const Text('Create Post'),
         backgroundColor: orangeColor,
       ),
       body: Padding(
@@ -53,19 +53,19 @@ class _NewPostPageState extends State<NewPostPage> {
           children: <Widget>[
             TextField(
               controller: postTitleController,
-              decoration: const InputDecoration(labelText: 'Post Title'),
+              decoration: const InputDecoration(labelText: 'Title'),
             ),
             TextField(
               controller: postDescriptionController,
-              decoration: const InputDecoration(labelText: 'Post Description'),
+              decoration: const InputDecoration(labelText: 'Description'),
             ),
             TextField(
               controller: postImageUrlController,
-              decoration: const InputDecoration(labelText: 'Image URL'),
+              decoration: const InputDecoration(labelText: 'Image'),
             ),
             TextField(
               controller: postSubredditController,
-              decoration: const InputDecoration(labelText: 'SubReddit'),
+              decoration: const InputDecoration(labelText: 'Subreddit'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
