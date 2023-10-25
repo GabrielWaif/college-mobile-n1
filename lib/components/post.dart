@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:reddit_clone/lib/colors.dart';
+import 'package:reddit_clone/models/post.dart';
 import 'package:reddit_clone/pages/PostPage.dart';
 
 class Post extends StatelessWidget {
+  final PostModel post;
+
   const Post({
     super.key,
     required this.username,
     required this.subreddit,
     required this.iconURL,
-    required this.text,
     required this.upVotes,
     required this.comments,
     required this.timeAgo,
-    this.imageURL = "",
     this.isLiked = false,
     this.isFirst = false,
+    required this.post
   });
 
   final String username;
   final String subreddit;
   final String iconURL;
-  final String text;
-  final String? imageURL;
   final String timeAgo;
   final String upVotes;
   final String comments;
@@ -33,7 +33,7 @@ class Post extends StatelessWidget {
     return InkWell(
         onTap: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const PostPage()));
+              MaterialPageRoute(builder: (context) => PostPage(post: post)));
         },
         child: Container(
           padding: const EdgeInsets.all(30),
@@ -97,16 +97,16 @@ class Post extends StatelessWidget {
                       child: Text(
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w500),
-                          text)),
+                          post.title)),
                   () {
-                    if (imageURL != "") {
+                    if (post.imageUrl != "") {
                       return Padding(
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                         child: Align(
                           alignment: Alignment.center,
                           child: ClipRect(
                               // borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(imageURL ?? "")),
+                              child: Image.network(post.imageUrl ?? "")),
                         ),
                       );
                     } else {

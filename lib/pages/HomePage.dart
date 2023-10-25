@@ -55,13 +55,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     timeAgo: "7h",
                     comments: "3,0",
                     upVotes: "28,2",
-                    text: posts![index].description,
                     iconURL:
                         "https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png",
                     subreddit: "AskReddit",
                     username: "coachieforbreakfast",
                     isFirst: true,
-                    imageURL: posts[index].imageUrl,
+                    post: posts![index],
                   );
                 },
               );

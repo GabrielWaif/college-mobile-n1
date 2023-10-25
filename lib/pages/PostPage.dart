@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:reddit_clone/lib/colors.dart';
+import 'package:reddit_clone/models/post.dart';
 
 import '../components/post.dart';
 
 class PostPage extends StatelessWidget {
-  const PostPage({super.key});
+  final PostModel post;
+
+  const PostPage({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          const Post(
+          Post(
             timeAgo: "16h",
             comments: "2,4",
             upVotes: "1,2",
-            text: "Navigation the New Normal.",
             iconURL:
                 "https://static9.depositphotos.com/1550494/1195/i/450/depositphotos_11950254-Urban-asian-man-with-red-sunglasses-and-skateboard-sitting-on-stairs.-Good-looking.-Cool-guy.-Wearing-grey-shirt-and-jeans.-Old-neglected-building-in-the-background..jpg",
-            imageURL:
-                "https://images.indianexpress.com/2021/07/Opinion-3-8.jpg?w=640",
             subreddit: "Coronavirus",
             username: "internetPositif",
             isFirst: false,
             isLiked: true,
+            post: post,
           ),
           Container(
               padding: const EdgeInsets.all(30),
@@ -187,10 +188,10 @@ class PostPage extends StatelessWidget {
           color: Colors.white,
           padding: const EdgeInsets.all(20),
           child: Flex(
-          direction: Axis.horizontal,
+            direction: Axis.horizontal,
             children: [
               const Expanded(
-              child: TextField(
+                  child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Add a comment...',
