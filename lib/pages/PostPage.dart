@@ -72,7 +72,7 @@ class PostPage extends StatelessWidget {
                                     child: Text(
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500),
-                                        "What is new normal")),
+                                        "This is nice")),
                               )
                             ],
                           ),
@@ -114,7 +114,7 @@ class PostPage extends StatelessWidget {
                                 child: Text(
                                     style:
                                         TextStyle(fontWeight: FontWeight.w500),
-                                    "Why do I get a feeling."),
+                                    "Good work."),
                               ),
                             ],
                           ),
