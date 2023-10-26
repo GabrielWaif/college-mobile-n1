@@ -113,7 +113,7 @@ class Post extends StatelessWidget {
                               fontSize: 20, fontWeight: FontWeight.w500),
                           post.title)),
                   () {
-                    if (post.imageUrl != null) {
+                    if (post.imageUrl != null && post.imageUrl!.trim() != "") {
                       return Padding(
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                         child: Align(
@@ -135,7 +135,8 @@ class Post extends StatelessWidget {
                             child: Text(
                               style: const TextStyle(
                                   color: lightGreyColor, fontSize: 15),
-                              "by r/$username * ${post.timeAgo.toDate().toString()}",
+                                  // TODO: Get this date from firebase entry - Need to format ;-)
+                              "by r/$username * Just Now",
                             ),
                           ));
                     }
