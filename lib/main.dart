@@ -1,6 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:reddit_clone/pages/HomePage.dart';
+import 'package:reddit_clone/pages/LoginPage.dart';
 import 'package:reddit_clone/repositories/posts_repository.dart';
 
 import 'lib/colors.dart';
@@ -10,6 +11,7 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(const MyApp());
 }
 
@@ -28,8 +30,8 @@ class MyApp extends StatelessWidget {
         ),
         home: ChangeNotifierProvider(
             create: (context) => PostsRepositor(),
-            child: const MaterialApp(
-              home: MyHomePage(),
+            child: MaterialApp(
+              home: LoginPage(),
             )));
   }
 }
