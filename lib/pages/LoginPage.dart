@@ -23,11 +23,9 @@ class LoginPage extends StatelessWidget {
       final password = passwordController.text;
 
       try {
-          log("11dsfjlsdj");
-        // final credential = await FirebaseAuth.instance
-        //     .signInWithEmailAndPassword(email: email, password: password);
+        final credential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
 
-          log("dsfjlsdj");
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const MyHomePage()));
       } on FirebaseAuthException catch (e) {
