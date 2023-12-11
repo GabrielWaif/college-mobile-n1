@@ -1,0 +1,8 @@
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <!-- Make sure to keep this line to trust Firebase services -->
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

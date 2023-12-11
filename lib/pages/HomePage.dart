@@ -85,14 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(color: orangeColor, Icons.home_outlined),
             label: '',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(color: lightGreyColor, Icons.language),
-            label: '',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(color: lightGreyColor, Icons.maps_ugc_outlined),
-            label: '',
-          ),
           BottomNavigationBarItem(
             icon: IconButton(
                 onPressed: () {

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:reddit_clone/lib/colors.dart';
 
@@ -231,12 +232,12 @@ class ProfilePage extends StatelessWidget {
           preferredSize: const Size.fromHeight(100),
           child: Container(
             padding: const EdgeInsets.all(50),
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    Padding(
+                    const Padding(
                         padding: EdgeInsets.only(
                           right: 20,
                         ),
@@ -244,18 +245,23 @@ class ProfilePage extends StatelessWidget {
                           color: Colors.white,
                           Icons.settings_outlined,
                         )),
-                    Padding(
+                    const Padding(
                         padding: EdgeInsets.only(right: 40),
                         child: Text(
                             style: TextStyle(color: Colors.white), "Settings")),
-                    Padding(
+                    const Padding(
                         padding: EdgeInsets.only(right: 40),
                         child:
                             Text(style: TextStyle(color: lightGreyColor), "|")),
                     Padding(
-                        padding: EdgeInsets.only(right: 10),
-                        child: Text(
-                            style: TextStyle(color: Colors.white), "Log out")),
+                      padding: const EdgeInsets.only(right: 10),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                            await FirebaseAuth.instance.signOut();
+                        },
+                        child: const Text('Log out'),
+                      ),
+                    ),
                   ],
                 )
               ],
